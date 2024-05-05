@@ -20,7 +20,7 @@ const Profile = () => {
     currentMedicines: '',
     vaccinationReport: '',
   });
-
+const [files, setfiles] = useState('')
   // Event handler to update patient information
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,134 +80,13 @@ const Profile = () => {
             </select>
           </label>
           <br />
+
           <label>
-            Address:
-            <textarea
-              name="address"
-              value={patient.address}
-              onChange={handleInputChange}
-              className='profiledata2'
-            />
+       <h3>Add your documents here !!</h3>
+       <input type="text" value={files} onChange={(e) => { setfiles(e.target.value) }}/>
+       <button className='regsubmit' >submit</button>
           </label>
-          <br />
-          <label>
-            Contact Number:
-            <input
-              type="tel"
-              name="contactNumber"
-              value={patient.contactNumber}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-          </label>
-          <br />
-          <h1>Medical Information</h1>
-          <label>
-            Blood Type:
-            <input
-              type="text"
-              name="bt"
-              value={patient.bt}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-          </label>
-          <br />
-          <label>
-            Last Physical Checkup:
-            <input
-              type="date"
-              name="lastPhysicalCheckup"
-              value={patient.lastPhysicalCheckup}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-          </label>
-          <br />
-          <label>
-            Major Illness:
-            <input
-              type="text"
-              name="majorIllness"
-              value={patient.majorIllness}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-            <br />
-            Medical Report If available: <input type="file" className='profiledata' />
-          </label>
-          <br />
-          <label>
-            Any Allergies:
-            <input
-              type="text"
-              name="allergies"
-              value={patient.allergies}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-            <br />
-            Medical Report If available: <input type="file" className='profiledata' />
-          </label>
-          <br />
-          <label>
-            Any Chronic Diseases:
-            <input
-              type="text"
-              name="chronicDiseases"
-              value={patient.chronicDiseases}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-            <br />
-            Medical Report If available: <input type="file" className='profiledata' />
-          </label>
-          <br />
-          <label>
-            Any History of Illness:
-            <input
-              type="text"
-              name="historyOfIllness"
-              value={patient.historyOfIllness}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-            <br />
-            Medical Report If available: <input type="file" className='profiledata' />
-          </label>
-          <br />
-          <label>
-            State Medicines You Are Currently On:
-            <input
-              type="text"
-              name="currentMedicines"
-              value={patient.currentMedicines}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-            <br />
-            Medical Report If available: <input type="file" className='profiledata' />
-          </label>
-          <br />
-          <label>
-            Vaccination Report If available:
-            <input
-              type="file"
-              name="vaccinationReport"
-              value={patient.vaccinationReport}
-              onChange={handleInputChange}
-              className='profiledata'
-            />
-          </label>
-          <br />
-          <button className='regsubmit' id='editprofile'>Edit</button>
         </form>
-      </div>
-      <div>
-        <h2>Preview:</h2>
-        {/* <p>
-          {`Name: ${patient.firstName} ${patient.lastName}, Age: ${patient.age}, Gender: ${patient.gender}, Address: ${patient.address}, Contact: ${patient.contactNumber}`}
-        </p> */}
       </div>
     </div>
   );

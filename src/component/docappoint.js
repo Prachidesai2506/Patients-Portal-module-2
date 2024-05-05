@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo1 from './medisync.png';
 import Logout from './shutdown.png';
+import axios from 'axios';
 
 const AppointmentList = () => {
-  // Sample initial appointments data
-  const [appointments, setAppointments] = useState([
-    { id: 1, patientName: 'John Doe', date: '2024-04-05', time: '10:00 AM' },
-    { id: 2, patientName: 'Jane Smith', date: '2024-04-07', time: '11:30 AM' },
-    { id: 3, patientName: 'Alice Johnson', date: '2024-04-08', time: '02:00 PM' },
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/getappointments')
+      .then(response => {
+        setAppointments(response.data);
+        setLoading(false); // Data fetching is complete
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -25,15 +35,17 @@ const AppointmentList = () => {
             <th>Patient Name</th>
             <th>Date</th>
             <th>Time</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {appointments.map(appointment => (
             <tr key={appointment.id}>
-              <td>{appointment.id}</td>
-              <td>{appointment.patientName}</td>
+              <td>{appointment.id_no}</td>
+              <td>{appointment.name}</td>
               <td>{appointment.date}</td>
               <td>{appointment.time}</td>
+              <td><button className='submit'>Accept</button></td>
             </tr>
           ))}
         </tbody>

@@ -1,16 +1,44 @@
 // AppointmentDashboard.js
 
 import React, { useState } from 'react';
+import axios from 'axios';
 import logo1 from './medisync.png'
 import Logout from './shutdown.png'
 const AppointmentDashboard = () => {
   // State to manage appointment data
-  const [appointments, setAppointments] = useState([
-    { id: 1, patientName: 'John Doe', date: '2022-03-01', time: '10:00 AM' ,Doctor: ''},
-    { id: 2, patientName: 'Jane Smith', date: '2022-03-02', time: '02:30 PM' },
-    // Add more appointment entries as needed
-  ]);
+  // const [appointments, setAppointments] = useState([
+  //   { id: 1, patientName: 'John Doe', date: '2022-03-01', time: '10:00 AM' ,Doctor: ''},
+  //   { id: 2, patientName: 'Jane Smith', date: '2022-03-02', time: '02:30 PM' },
+  //   // Add more appointment entries as needed
+  // ]);
 
+  const [id_no, setid] = useState('');
+  const [name, setname] = useState('');
+  const [date, setdate] = useState('');
+  const [time, settime] = useState('');
+
+  async function submit(e) {
+    e.preventDefault();
+    try {
+      axios.post("http://localhost:3000/appointment", {id_no,name,date,time}).then(res => {
+        if (res.data == "exist") {
+          alert("User already exist")
+          
+        }
+        else {
+          alert("appointment successfully done")
+          // alert("Your Application No is : "+id_no)
+        }
+      })
+        .catch(e => {
+          alert("wrong details")
+          console.log(e);
+        })
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
   return (
     <div >
        <header>
@@ -33,19 +61,19 @@ const AppointmentDashboard = () => {
         <thead>
           <tr>
             <th>Application no</th>
-            <td><input type="text" /></td>
+            <td><input type="text" value={id_no} onChange={(e) => { setid(e.target.value) }} /></td>
             </tr>
             <tr>
             <th>Patient Name</th>
-            <td><input type="text" /></td>
+            <td><input type="text" value={name} onChange={(e) => { setname(e.target.value) }}/></td>
             </tr>
             <tr>
             <th>Date</th>
-            <td><input type="date" /></td>
+            <td><input type="date" value={date} onChange={(e) => { setdate(e.target.value) }}/></td>
             </tr>
              <tr>
             <th>Time</th>
-            <td><input type="time" /></td>
+            <td><input type="time" value={time} onChange={(e) => { settime(e.target.value) }}/></td>
             </tr>
             <tr>
             <th>Select Doctor</th>
@@ -59,7 +87,7 @@ const AppointmentDashboard = () => {
         
         </tbody>
       </table>
-      <button type="submit" className='regsubmit' id='apply'>Apply</button>
+      <button type="submit" className='regsubmit' id='apply' onClick={submit}>Apply</button>
 
     </div>
     </div>
