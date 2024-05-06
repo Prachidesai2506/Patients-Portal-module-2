@@ -2,6 +2,7 @@ const express=require("express")
 const collections=require("./mongo")
 const collection2=require("./mongo2")
 const collection=require("./mongo3")
+const pdcollection=require("./mongo4")
 const cors=require("cors")
 const { connect } = require("mongoose")
 const app=express()
@@ -11,9 +12,13 @@ app.use(cors({
     origin: "*"
 }))
 // connect("mongodb://localhost:27017")
+
 app.get("/",cors(),(req,res)=>{
 
 })
+
+//CHECK THE DATA OF PATIENT AND GET LOGGED IN
+
 app.post("/",async(req,res)=>{
    console.log("/")
     try{
@@ -31,6 +36,8 @@ app.post("/",async(req,res)=>{
 console.log(e)
     }
 })
+
+// PATIENTS GET REGISTERED
 
 app.post("/signup",async(req,res)=>{
     
@@ -58,6 +65,8 @@ console.log(e)
     }
 })
 
+// GET LOGGED IN FOR DOCTORS
+
 app.post("/doclogin",async(req,res)=>{
     console.log("/")
      try{
@@ -76,6 +85,8 @@ app.post("/doclogin",async(req,res)=>{
      }
  })
  
+//DOCTORS GETTING SIGNED UP (REGISTERED)
+
  app.post("/docsignup",async(req,res)=>{
      console.log(req)
      const data={
@@ -99,6 +110,9 @@ app.post("/doclogin",async(req,res)=>{
  console.log(e)
      }
  })
+
+// STORE APPOINTMENT DATA
+
  app.post("/appointment", async (req, res) => {
     try {
         const data = {
@@ -124,6 +138,8 @@ app.post("/doclogin",async(req,res)=>{
     }
 });
 
+// GET APPOINTMENT DATA
+
 app.get('/getappointments',(req,res)=>
 {
     collection.find()
@@ -131,6 +147,34 @@ app.get('/getappointments',(req,res)=>
     .catch(err => res.json(err))
 })
  
+//STORE PATIENTS DETAILS IN DATABASE
+
+app.post("/profile_data", async (req, res) => {
+    try {
+        const data = {
+            // id_no: req.body.id_no,
+            fname: req.body.fname,
+            lname: req.body.lname,
+            Age: req.body.Age,
+            Gender: req.body.Gender
+        };
+        await pdcollection.insertMany(data);
+        console.log("Data stored in the database.");
+        // const existingDoc = await collection.findOne({ id_no: data.id_no });
+
+        // if (existingDoc) {
+        //     res.json("already exist");
+           
+            
+        // } else {
+        //     res.json("does not already exist");
+            
+        // }
+    } catch (error) {
+        console.error("Error storing data in the database:", error);
+        // res.status(500).json("Error storing data in the database");
+    }
+});
 app.listen(3000,()=>{
     console.log("port is running");
 })

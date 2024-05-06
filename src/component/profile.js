@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
 import logo1 from './medisync.png';
 import Logout from './shutdown.png';
-
+import axios from 'axios';
 const Profile = () => {
   // State to manage patient information
-  const [patient, setPatient] = useState({
-    firstName: '',
-    lastName: '',
-    age: '',
-    gender: '',
-    address: '',
-    contactNumber: '',
-    bt: '',
-    lastPhysicalCheckup: '',
-    majorIllness: '',
-    allergies: '',
-    chronicDiseases: '',
-    historyOfIllness: '',
-    currentMedicines: '',
-    vaccinationReport: '',
-  });
+  // const [patient, setPatient] = useState([]);
 const [files, setfiles] = useState('')
+const [fname, setfname] = useState('')
+const [lname, setlname] = useState('')
+const [Age, setage] = useState('')
+const [Gender, setgender] = useState('')
   // Event handler to update patient information
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setPatient({ ...patient, [name]: value });
-  };
+  async function submit(e) {
+    e.preventDefault();
+    try {
+      axios.post("http://localhost:3000/profile_data", {fname,lname,Age,Gender}).then(res => {
+        if (res.data == "exist") {
+          alert("User already exist")
+          
+        }
+        else {
+          alert("Data successfully stored")
+          // alert("Your Application No is : "+id_no)
+        }
+      })
+        .catch(e => {
+          alert("wrong details")
+          console.log(e);
+        })
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <div>
@@ -43,8 +50,8 @@ const [files, setfiles] = useState('')
             <input
               type="text"
               name="firstName"
-              value={patient.firstName}
-              onChange={handleInputChange}
+              
+              value={fname} onChange={(e) => { setfname(e.target.value) }}
               className='profiledata'
             />
           </label>
@@ -54,8 +61,7 @@ const [files, setfiles] = useState('')
             <input
               type="text"
               name="lastName"
-              value={patient.lastName}
-              onChange={handleInputChange}
+              value={lname} onChange={(e) => { setlname(e.target.value) }}
               className='profiledata'
             />
           </label>
@@ -65,15 +71,14 @@ const [files, setfiles] = useState('')
             <input
               type="number"
               name="age"
-              value={patient.age}
-              onChange={handleInputChange}
+              value={Age} onChange={(e) => { setage(e.target.value) }}
               className='profiledata'
             />
           </label>
           <br />
           <label>
             Gender:
-            <select name="gender" value={patient.gender} onChange={handleInputChange}>
+            <select name="gender" value={Gender} onChange={(e) => { setgender(e.target.value) }} >
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -83,8 +88,8 @@ const [files, setfiles] = useState('')
 
           <label>
        <h3>Add your documents here !!</h3>
-       <input type="text" value={files} onChange={(e) => { setfiles(e.target.value) }}/>
-       <button className='regsubmit' >submit</button>
+       <input type="file" value={files} onChange={(e) => { setfiles(e.target.value) }}/>
+       <button className='regsubmit' onClick={submit}>submit</button>
           </label>
         </form>
       </div>
