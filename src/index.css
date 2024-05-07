@@ -111,6 +111,7 @@ input{
   height: 23px;
   border-bottom: 1px solid black;
   outline: none;
+  
 }
 .submit, .regsubmit{
   transform: translate(180px, 11px);
@@ -270,10 +271,9 @@ th {
 li{
   list-style-type: none;
 }
-.profiledata{
+.profiledata,.data_doc{
   margin-left: 15.5%;
-    
-    background: aliceblue;
+  background: aliceblue;
 }
 textarea{
   width: 200px;
@@ -330,5 +330,47 @@ textarea{
 /* Search button hover effect */
 .search-button:hover {
   background-color: #0056b3;
+}
+
+#profile_submit{
+  transform: translate(-50px, -1px);
+}
+
+/* Custom select container */
+.select-container {
+  position: relative;
+  width: 50px; /* Adjust width as needed */
+}
+
+/* Hide default select */
+.select-container select {
+  display: none;
+}
+
+/* Style for custom select */
+.custom-select {
+  display: block;
+  /* width: 100%; */
+  margin: -17px 18px 6px 185px;
+  padding: 5px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  text-underline-offset: none;
+}
+
+#age{
+  margin-left: 19%;
+}
+
+#doc_save{
+  transform: translate(15px, 8px);
+}
+#accept_app{
+  transform: translate(130px, 1px);
 }
 

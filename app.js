@@ -3,6 +3,7 @@ const collections=require("./mongo")
 const collection2=require("./mongo2")
 const collection=require("./mongo3")
 const pdcollection=require("./mongo4")
+const ddcollection=require("./mongo5")
 const cors=require("cors")
 const { connect } = require("mongoose")
 const app=express()
@@ -160,21 +161,43 @@ app.post("/profile_data", async (req, res) => {
         };
         await pdcollection.insertMany(data);
         console.log("Data stored in the database.");
-        // const existingDoc = await collection.findOne({ id_no: data.id_no });
-
-        // if (existingDoc) {
-        //     res.json("already exist");
-           
-            
-        // } else {
-        //     res.json("does not already exist");
-            
-        // }
+        
     } catch (error) {
         console.error("Error storing data in the database:", error);
         // res.status(500).json("Error storing data in the database");
     }
 });
+
+// STORE DOCTOR DATA IN DATABASE
+app.post("/doctor_profile", async (req, res) => {
+    try {
+        const data = {
+            // id_no: req.body.id_no,
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.address,
+            degree: req.body.degree,
+            speciality:req.body.speciality,
+            college: req.body.college,
+            year: req.body.year
+        };
+        await ddcollection.insertMany(data);
+        console.log("Data stored in the database.");
+        
+    } catch (error) {
+        console.error("Error storing data in the database:", error);
+        // res.status(500).json("Error storing data in the database");
+    }
+});
+
+//Get doctors data
+app.get('/getdocdata',(req,res)=>
+    {
+        ddcollection.find()
+        .then(doctordatas => res.json(doctordatas))
+        .catch(err => res.json(err))
+    })
 app.listen(3000,()=>{
     console.log("port is running");
 })

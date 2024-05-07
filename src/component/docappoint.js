@@ -45,7 +45,7 @@ const AppointmentList = () => {
               <td>{appointment.name}</td>
               <td>{appointment.date}</td>
               <td>{appointment.time}</td>
-              <td><button className='submit'>Accept</button></td>
+              <td><button className='submit' id='accept_app'>Accept</button></td>
             </tr>
           ))}
         </tbody>

@@ -1,9 +1,11 @@
 // AppointmentDashboard.js
 
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import axios from 'axios';
 import logo1 from './medisync.png'
 import Logout from './shutdown.png'
+
+
 const AppointmentDashboard = () => {
   // State to manage appointment data
   // const [appointments, setAppointments] = useState([
@@ -16,6 +18,7 @@ const AppointmentDashboard = () => {
   const [name, setname] = useState('');
   const [date, setdate] = useState('');
   const [time, settime] = useState('');
+
 
   async function submit(e) {
     e.preventDefault();
@@ -39,6 +42,23 @@ const AppointmentDashboard = () => {
       console.log(e)
     }
   }
+
+  const [loading, setLoading] = useState(true);
+  const [docdata, setdocdata] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/getdocdata')
+      .then(response => {
+        setdocdata(response.data);
+        setLoading(false); // Data fetching is complete
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div >
        <header>
@@ -89,6 +109,34 @@ const AppointmentDashboard = () => {
       </table>
       <button type="submit" className='regsubmit' id='apply' onClick={submit}>Apply</button>
 
+    </div>
+  <div>
+    <h2>Doctors List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Speciality</th>
+            <th>Degree</th>
+            <th>Area</th>
+          </tr>
+        </thead>
+        <tbody>
+          {docdata.map(docd => (
+            <tr key={docd.id}>
+              <td>{docd.name}</td>
+              <td>{docd.phone}</td>
+              <td>{docd.speciality}</td>
+              <td>{docd.degree}</td>
+              <td>{docd.address}</td>
+              {/* <td><button className='submit'>Accept</button></td> */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br/>
+      <br />
     </div>
     </div>
   );

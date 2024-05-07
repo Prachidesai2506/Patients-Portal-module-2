@@ -67,9 +67,10 @@ const [Gender, setgender] = useState('')
           </label>
           <br />
           <label>
-            Age:
+            Age      :
             <input
               type="number"
+              id='age'
               name="age"
               value={Age} onChange={(e) => { setage(e.target.value) }}
               className='profiledata'
@@ -78,7 +79,7 @@ const [Gender, setgender] = useState('')
           <br />
           <label>
             Gender:
-            <select name="gender" value={Gender} onChange={(e) => { setgender(e.target.value) }} >
+            <select  name="gender" value={Gender} onChange={(e) => { setgender(e.target.value) }} >
               <option value="male">Male</option>
               <option value="female">Female</option>
               <option value="other">Other</option>
@@ -89,7 +90,7 @@ const [Gender, setgender] = useState('')
           <label>
        <h3>Add your documents here !!</h3>
        <input type="file" value={files} onChange={(e) => { setfiles(e.target.value) }}/>
-       <button className='regsubmit' onClick={submit}>submit</button>
+       <button className='regsubmit' onClick={submit} id='profile_submit'>submit</button>
           </label>
         </form>
       </div>
