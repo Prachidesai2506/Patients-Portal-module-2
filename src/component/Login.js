@@ -26,7 +26,7 @@ function PatientPortal() {
             {
                history("/home",{state:{id:email}})
             }
-           else if(res.data=="notexist")
+           else if(res.data=="not exist")
             {
                alert("User have not yet registered")
                console.log("User have not yet registered")
@@ -79,11 +79,11 @@ function PatientPortal() {
 
                             <Link to="/signup" className='register'>Not yet Registered?</Link>
                             <br />
-                            <Link>Forgot Password</Link>
+                            {/* <Link >Forgot Password</Link> */}
                             <br />
-                            <Link to="/doclogin">Doctor</Link>
+                            <Link to="/doclogin" className='doc_log'>Doctor</Link>
                             <br />
-                            <Link>Admin</Link>
+                            <Link className='admin'>Admin</Link>
                         </div>
                     </form>
                 </div>

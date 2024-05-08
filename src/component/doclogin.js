@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from "react-router-dom"
 import doctor from './doctor(2).png';
-import patient from './patient(1).png';
+// import patient from './patient(1).png';
 // import './index.css';
 // import Main from './main'
 import Medisync from './medisync.png'
@@ -20,13 +20,14 @@ function PatientPortal() {
        e.preventDefault();
        try{
         console.log(email, password)
-        await axios.post("http://localhost:3000/",{email,password}).then(res=>{
+        await axios.post("http://localhost:3000/doclogin",{email,password}).then(res=>{
             console.log("User have not yet registered")
+            console.log(res.data)
             if(res.data=="exist")
             {
                history("/docdash",{state:{id:email}})
             }
-           else if(res.data=="notexist")
+           else if(res.data=="not exist")
             {
                alert("User have not yet registered")
                console.log("User have not yet registered")
@@ -79,11 +80,11 @@ function PatientPortal() {
 
                             <Link to="/docsignup" className='register'>Not yet Registered?</Link>
                             <br />
-                            <Link>Forgot Password</Link>
+                            {/* <Link>Forgot Password</Link> */}
                             <br />
-                            <Link to="/">Patient</Link>
+                            <Link to="/" className='pat_log'>Patient</Link>
                             <br />
-                            <Link>Admin</Link>
+                            <Link className='admin'> Admin</Link>
                         </div>
                     </form>
                 </div>

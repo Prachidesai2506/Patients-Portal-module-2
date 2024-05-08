@@ -179,7 +179,7 @@ padding: 10px;
   margin: 5% 15% 5% ;
   border: #2f316c 2px solid;
   border-radius: 25px;
-  height: 909px 
+  height: 372px; 
 }
 footer{
   display: flex;
@@ -373,4 +373,11 @@ textarea{
 #accept_app{
   transform: translate(130px, 1px);
 }
-
+#patalign{
+  margin: 10px;
+  transform: translate(-379px, 56px);
+  margin-right: 20px;
+}
+/* .register-area>input{
+  background-color: aliceblue;
+} */

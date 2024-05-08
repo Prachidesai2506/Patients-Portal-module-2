@@ -22,7 +22,7 @@ function Docregistration() {
     try {
       console.log(email, password)
       axios.post("http://localhost:3000/docsignup", { email, password }).then(res => {
-        if (res.data == "exist") {
+        if (res.data == "already exist") {
           alert("User already exist")
           history("/home", { state: { id: email } })
           
@@ -59,9 +59,9 @@ function Docregistration() {
 
 
 
-        <Link to='home'><button className='regsubmit' onClick={submit}>submit</button></Link>
+        <Link to='home'><button className='regsubmit' onClick={submit} id='patalign'>submit</button></Link>
         {/* <Link to='/'> <input className='regsubmit' type='submit' onClick={submit}/>Sub</Link> */}
-        <Link to='/doclogin'><button className='regsubmit' >Login</button></Link>
+        <Link to='/doclogin'><button className='regsubmit' id='patalign'>Login</button></Link>
       </form>
     </div>
 

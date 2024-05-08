@@ -69,7 +69,7 @@ console.log(e)
 // GET LOGGED IN FOR DOCTORS
 
 app.post("/doclogin",async(req,res)=>{
-    console.log("/")
+    console.log(res)
      try{
       const check=await collection2.findOne({email:req.body.email})
       if(check)

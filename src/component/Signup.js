@@ -23,9 +23,10 @@ function Patregistration() {
       console.log(email, password)
       let id_no=Date.now().toString(36);
       axios.post("http://localhost:3000/signup", { id_no,email, password }).then(res => {
-        if (res.data == "exist") {
+        console.log(res.data)
+        if (res.data == "already exist") {
           alert("User already exist")
-          history("/home", { state: { id: email } })
+          // history("/home", { state: { id: email } })
         }
         else {
           alert("Successfully Registered")
@@ -56,9 +57,9 @@ function Patregistration() {
 
         <input type="email" placeholder='email' onChange={(e) => { setEmail(e.target.value) }} />
         <input type="password" placeholder='password' onChange={(e) => { setpassword(e.target.value) }} />
-        <Link to='home'><button className='regsubmit' onClick={submit}>submit</button></Link>
+        <Link to='home'><button className='regsubmit' onClick={submit} id='patalign'>submit</button></Link>
         {/* <Link to='/'> <input className='regsubmit' type='submit' onClick={submit}/>Sub</Link> */}
-        <Link to='/'><button className='regsubmit' >Login</button></Link>
+        <Link to='/'><button className='regsubmit' id='patalign'>Login</button></Link>
       </form>
     </div>
 
