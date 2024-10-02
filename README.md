@@ -1,3 +1,48 @@
+# Patients Portal Website (MERN Stack) Module - 2
+
+## Overview
+This project is a full-stack web application built using the MERN (MongoDB, Express, React, Node.js) stack. The platform serves as a portal for both patients and doctors to manage medical appointments, track medical history, and provide an easy way to communicate. Patients can apply for appointments, view their medical records, and track their health. Doctors can manage appointments, review patient medical history, and accept or decline appointment requests.
+
+## Features
+### Patients:
+- Register and login securely.
+- Manage their profile and medical information.
+- View their medical history and previous treatments.
+- Request and schedule appointments with doctors.
+- Receive notifications for upcoming appointments.
+  
+### Doctors:
+- Register and login securely.
+- Manage their profile, specialty, and availability.
+- View patient profiles and medical history.
+- Accept, decline, or reschedule appointments.
+- Manage appointment calendar.
+
+### Admin:
+- Manage patients and doctors.
+- Monitor platform activity.
+
+## Technologies Used
+- **Frontend**: React.js, Redux (for state management), Bootstrap (for UI components)
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB (for storing user profiles, medical records, and appointments)
+- **Authentication**: JWT (JSON Web Tokens) for secure authentication.
+- **Styling**: CSS, Bootstrap.
+- **Other**: Axios (for API calls), bcryptjs (for password hashing).
+
+## Setup and Installation
+
+### Prerequisites:
+- **Node.js** installed
+- **MongoDB** installed and running on your local machine or cloud-based MongoDB (e.g., MongoDB Atlas)
+- **Git** (for cloning the repository)
+
+### Instructions:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/patients-portal.git
+   cd patients-portal
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
